@@ -3,6 +3,7 @@ package com.seailz.atom;
 import com.google.common.collect.Iterables;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
+import com.seailz.atom.events.AtomListener;
 import com.seailz.atom.utils.Dispatcher;
 import com.seailz.atom.workers.BungeeChannelListener;
 import org.bukkit.Bukkit;
@@ -31,6 +32,14 @@ public class Atom {
 
         Bukkit.getServer().getMessenger().registerOutgoingPluginChannel(plugin, "BungeeCord");
         Bukkit.getServer().getMessenger().registerIncomingPluginChannel(plugin, "BungeeCord", bungeeChannelListener);
+    }
+
+    public void registerListener(AtomListener listener) {
+        dispatcher.registerListener(listener);
+    }
+
+    public void unregisterListener(AtomListener listener) {
+        dispatcher.unregisterListener(listener);
     }
 
     /**
