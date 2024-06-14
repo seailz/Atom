@@ -10,8 +10,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.concurrent.CompletableFuture;
-
 /**
  * The main class for the Atom project.
  * You can create a new instance of this class and start calling methods to begin using the Atom API.
@@ -51,7 +49,7 @@ public class Atom {
      */
     public void sendMessage(String channel, String message, Player player, boolean justJoined) {
         if (justJoined) {
-            Bukkit.getScheduler().runTaskLater(plugin, () -> sendBungeeMessage(channel, message, player), 20L);
+            Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, () -> sendBungeeMessage(channel, message, player), 20L);
             return;
         }
 
